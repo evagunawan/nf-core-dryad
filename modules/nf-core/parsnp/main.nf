@@ -8,9 +8,8 @@ process PARSNP {
 
     input:
         path reference_fasta
-        path genome
+        path genomes
         path outdir
-
 
     output:
         path "*.xmfa"               , emit: core-genome-alignment
@@ -22,7 +21,7 @@ process PARSNP {
         task.ext.when == null || task.ext.when
         
     script:
-    """
-    parsnp -r ${reference_fasta} -d ${genome} -o ${outdir}
-    """
+        """
+        parsnp -r ${reference_fasta} -d ${genomes} -o ${outdir}
+        """
 }
