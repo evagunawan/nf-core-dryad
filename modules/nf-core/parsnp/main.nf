@@ -16,6 +16,7 @@ process PARSNP {
         path "*.ggr"                , emit: gingr-file
         path "parsnp.snps.mblocks"  , emit: mblocks
         path "parsnp.tree"          , emit: phylogeny
+        path "versions.yml"         , emit: versions
 
     when:
         task.ext.when == null || task.ext.when
