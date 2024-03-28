@@ -22,6 +22,13 @@ process PARSNP {
         
     script:
         """
-        parsnp -r ${reference_fasta} -d ${genomes} -o ${outdir}
+        parsnp \\
+        -r ${reference_fasta} \\
+        -d ${genomes} \\
+        -o ${outdir}
+
+        cat <<-END_VERSIONS > versions.yml
+        "${task.process}":
+            parsnp: \$(parsnp -V | cut -d ' ' -f2 | sed 's/v//')
         """
 }
