@@ -14,8 +14,8 @@ process QUAST {
         val use_gff
 
     output:
-        path "${prefix}"    , emit: results
-        path '*.tsv'        , emit: tsv
+        path "${prefix}"    , emit: quast_results
+        path '*.tsv'        , emit: quast_tsv
         path "versions.yml" , emit: versions
 
     when:
@@ -29,7 +29,8 @@ process QUAST {
 
         """
         quast.py \\
-            ${contigs} -o .
+            ${contigs} \\
+            -o .
 
         cat <<-END_VERSIONS > versions.yml
         "${task.process}":
